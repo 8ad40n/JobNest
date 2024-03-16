@@ -18,4 +18,12 @@ export class AuthService {
         });
     }
 
+    async findById(id: number) {
+        //return this.users.find((user) => user.id === id);
+        return await this.userRepository.find({ where: { id: id } });
+      }
+    
+
+    
+
 }
