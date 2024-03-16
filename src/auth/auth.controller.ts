@@ -1,8 +1,8 @@
-import { BadRequestException, Body, Controller, Get, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post, Req, Res, UnauthorizedException, ValidationPipe } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
+import { CreateUserDto } from './dto/create-user.dto';
 
 
 @Controller('auth')
@@ -10,12 +10,19 @@ export class AuthController {
     constructor(private readonly authService:AuthService, private jwtService: JwtService ) {}
 
 
-    @Post("register")
-    async register(@Body("name") name:string, @Body("email") email:string, @Body("password") password:string,)
-    {
-        const hashedPassword = await bcrypt.hash(password, 10);
+    // @Post("register")
+    // async register(@Body("name") name:string, @Body("email") email:string, @Body("password") password:string,)
+    // {
+    //     const hashedPassword = await bcrypt.hash(password, 10);
 
-        return this.authService.register({name, email, password: hashedPassword});
+    //     return this.authService.register({name, email, password: hashedPassword});
+    // }
+
+    @Post("register")
+    async register(@Body(ValidationPipe) createUserDto: CreateUserDto)
+    {
+
+        return this.authService.register(createUserDto);
     }
 
     @Post('login')
@@ -30,9 +37,9 @@ export class AuthController {
             throw new BadRequestException('invalid credentials');
         }
 
-        if (!await bcrypt.compare(password, user.password)) {
-            throw new BadRequestException('invalid credentials');
-        }
+        // if (!await bcrypt.compare(password, user.password)) {
+        //     throw new BadRequestException('invalid credentials');
+        // }
         const jwt= await this.jwtService.signAsync({id: user.id});
 
 
