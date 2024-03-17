@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 @Entity("users")
 export class User{
     @PrimaryGeneratedColumn()
@@ -14,6 +14,18 @@ export class User{
     @Column({nullable:false})
     password: string;
 
+    @Column({nullable:true})
+    type: string;
+
+    @Column({nullable:true})
+    subscriptionStatus: string;
+
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updateAt: Date;
 
     
     @BeforeInsert()

@@ -1,4 +1,9 @@
+import { Job } from 'src/entities/job.entity';
+import { JobProposal } from 'src/entities/jobProposal.entity';
+import { JobSkill } from 'src/entities/jobSkill.entity';
+import { Skill } from 'src/entities/skills.entity';
 import { User } from 'src/entities/user.entity';
+import { UserSkill } from 'src/entities/userSkills.entity';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 const config: PostgresConnectionOptions = {
@@ -8,7 +13,7 @@ const config: PostgresConnectionOptions = {
   port: 5432,
   username: 'postgres',
   password: '1234',
-  entities: [User],
+  entities: [User,Skill,UserSkill,Job,JobProposal,JobSkill],
   synchronize: true,
 };
 
