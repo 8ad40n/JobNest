@@ -8,7 +8,7 @@ import { ChatHistoryManager } from './model/chat-history-manager';
 
 const DEFAULT_TEMPERATURE = 1;
 const DEFAULT_MODEL = 'gpt-3.5-turbo';
-// const OPENAI_API_KEY = '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';
+
 // const OPENAI_API_KEY = "demo";
 
 @Injectable()
