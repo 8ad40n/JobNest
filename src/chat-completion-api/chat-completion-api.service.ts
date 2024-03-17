@@ -12,6 +12,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 // const OPENAI_API_KEY = "demo";
 
+
 @Injectable()
 export class ChatCompletionApiService {
   private readonly chatHistory: ChatHistoryManager;

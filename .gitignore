@@ -1,5 +1,5 @@
 node_modules/
-/chat-completion-api
+
 # compiled output
 /dist
 /node_modules

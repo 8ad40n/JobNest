@@ -1,5 +1,6 @@
 import { BadRequestException, Body, Controller, Get, Post, Req, Res, UnauthorizedException, ValidationPipe } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -21,7 +22,8 @@ export class AuthController {
     @Post("register")
     async register(@Body(ValidationPipe) createUserDto: CreateUserDto)
     {
-
+        const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+        createUserDto.password = hashedPassword;
         return this.authService.register(createUserDto);
     }
 
