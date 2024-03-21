@@ -29,4 +29,11 @@ export class JobController {
         const postBy = req.user.id;
         return this.userRepository.find({ where: { id: postBy } });
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Post("search")
+    async searchJobsByTitle(@Body() searchQuery: { keyword: string }): Promise<Job[]> {
+        const { keyword } = searchQuery;
+        return this.jobService.searchJobsByTitle(keyword);
+    }
 }
