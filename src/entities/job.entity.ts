@@ -11,11 +11,11 @@ export class Job{
     @Column()
     description: string;
 
-    @Column()
-    postedBy: number;
-
 
     @Column()
+    postedBy:number;
+
+    @Column({nullable:true})
     acceptedUserID: number;
 
     @Column()
@@ -24,7 +24,7 @@ export class Job{
     @Column()
     duration: string;
 
-    @Column()
+    @Column({nullable:true})
     status: string;
 
     @CreateDateColumn()

@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
+
     constructor(@InjectRepository(User) private readonly userRepository: Repository<User>){}
 
 
@@ -18,10 +19,14 @@ export class AuthService {
         });
     }
 
-    async findById(id: number) {
-        //return this.users.find((user) => user.id === id);
-        return await this.userRepository.find({ where: { id: id } });
-      }
+    // async findById(id: number) {
+    //     //return this.users.find((user) => user.id === id);
+    //     return await this.userRepository.find({ where: { id: id } });
+    //   }
+
+    async findById(id: number): Promise<User | undefined> {
+    return this.userRepository.findOne({where: { id: id }});
+    }
     
 
     

@@ -1,9 +1,10 @@
-import { BadRequestException, Body, Controller, Get, Post, Req, Res, UnauthorizedException, ValidationPipe } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post, Req, Res, UseGuards, ValidationPipe } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { JwtAuthGuard } from './guards/jwt.guard';
 
 
 @Controller('auth')
@@ -27,11 +28,12 @@ export class AuthController {
         return this.authService.register(createUserDto);
     }
 
+    // @UseGuards(LocalGuard)
     @Post('login')
     async login(
         @Body('email') email: string,
         @Body('password') password: string,
-        @Res({passthrough: true}) response: Response
+        @Res({passthrough: true}) response: Response, @Req() req: Request
     ) {
         const user = await this.authService.findOne(email);
 
@@ -39,9 +41,9 @@ export class AuthController {
             throw new BadRequestException('invalid credentials');
         }
 
-        // if (!await bcrypt.compare(password, user.password)) {
-        //     throw new BadRequestException('invalid credentials');
-        // }
+        if (!await bcrypt.compare(password, user.password)) {
+            throw new BadRequestException('invalid credentials');
+        }
         const jwt= await this.jwtService.signAsync({id: user.id});
 
 
@@ -51,25 +53,29 @@ export class AuthController {
         return "Success";
     }
 
+
+
+    @UseGuards(JwtAuthGuard)
     @Get("user")
-    async user(@Req() request: Request)
+    async user(@Req() req: Request)
     {   
-        try {
-            const cookie = request.cookies['jwt'];
+        // try {
+        //     const cookie = request.cookies['jwt'];
 
-            const data = await this.jwtService.verifyAsync(cookie);
+        //     const data = await this.jwtService.verifyAsync(cookie);
 
-            if (!data) {
-                throw new UnauthorizedException();
-            }
+        //     if (!data) {
+        //         throw new UnauthorizedException();
+        //     }
 
-            const user = await this.authService.findById(data['id']);
+        //     const user = await this.authService.findById(data['id']);
 
 
-            return user;
-        } catch (e) {
-            throw new UnauthorizedException();
-        }
+        //     return user;
+        // } catch (e) {
+        //     throw new UnauthorizedException();
+        // }
+        return req.user;
     }
 
     @Post('logout')
