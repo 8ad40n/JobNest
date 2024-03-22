@@ -27,9 +27,12 @@ export class User{
     @UpdateDateColumn()
     updateAt: Date;
 
+
     
     @BeforeInsert()
     async HashPassword() {
       this.password = await bcrypt.hash(this.password, 12);
     }
+
+
 }

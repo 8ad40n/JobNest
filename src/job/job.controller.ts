@@ -44,7 +44,8 @@ export class JobController {
     @UseGuards(JwtAuthGuard)
     @Post("proposal")
     async sendJobProposal(@Body() proposalDto: JobProposalDto, @Req() req): Promise<JobProposal> {
-        const jobID= proposalDto.jobID;
+        try{
+            const jobID= proposalDto.jobID;
         const job = await this.jobRepository.findOne({where: {jobID: jobID}});
         if (!job) {
             throw new Error("Job not found");
@@ -56,8 +57,13 @@ export class JobController {
 
         proposalDto.userID = req.user.id;
         return this.jobService.createJobProposal(proposalDto); 
+        }
+        catch(error)
+        {
+            throw new Error(error.message);
+        }
     }
-    
+
 
     
 }
