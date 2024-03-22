@@ -10,5 +10,5 @@ export class UserSkill{
 
     @Column()
     skillID: number;
-
+    
 }

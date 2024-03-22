@@ -5,11 +5,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JobModule } from './job/job.module';
-import { SkillModule } from './skill/skill.module';
+import { UsersModule } from './users/users.module';
 // ChatCompletionApiModule
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule],
+  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, UsersModule],
   controllers: [AppController],
   providers: [AppService]
 })

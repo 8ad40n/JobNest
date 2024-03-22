@@ -48,6 +48,8 @@ export class AuthController {
 
 
         response.cookie("jwt", jwt, {httpOnly: true})
+
+        return {jwt:jwt};
         
 
         return "Success";
