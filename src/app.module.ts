@@ -4,12 +4,14 @@ import config from 'ormconfig';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
+import { BkashModule } from './bkash/bkash.module';
 import { JobModule } from './job/job.module';
+import { PaymentModule } from './payment/payment.module';
 import { SkillModule } from './skill/skill.module';
 // ChatCompletionApiModule
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule],
+  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, BkashModule],
   controllers: [AppController],
   providers: [AppService]
 })
