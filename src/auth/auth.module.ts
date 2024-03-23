@@ -11,7 +11,7 @@ import { LocalStrategy } from './strategies/local.strategy';
 
 
 @Module({
-  imports: [PassportModule,TypeOrmModule.forFeature([User]), JwtModule.register({secret: "abc123", signOptions: {expiresIn: "1h"}})],
+  imports: [PassportModule,TypeOrmModule.forFeature([User]), JwtModule.register({secret: "abc123", signOptions: {expiresIn: "1d"}})],
 
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy]

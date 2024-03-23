@@ -1,8 +1,14 @@
+
 import { Bill } from 'src/entities/bill.entitiy';
+
+import { Package } from 'src/entities/package.entity';
+
+import { Chat } from 'src/entities/chat.entity';
 import { Job } from 'src/entities/job.entity';
 import { JobProposal } from 'src/entities/jobProposal.entity';
 import { JobSkill } from 'src/entities/jobSkill.entity';
-import { Package } from 'src/entities/package.entity';
+import { Payment } from 'src/entities/payment.entity';
+
 import { Skill } from 'src/entities/skills.entity';
 import { Subscription } from 'src/entities/subscription.entity';
 import { User } from 'src/entities/user.entity';
@@ -15,7 +21,8 @@ const config: PostgresConnectionOptions = {
   host: 'localhost',
   port: 5432,
   username: 'postgres',
-  password: 'tiger123',
+
+  password: '1234',
   entities: [
     User,
     Skill,
@@ -25,8 +32,9 @@ const config: PostgresConnectionOptions = {
     JobSkill, 
     Bill,
     Subscription,
-    Package
+    Package,Payment, Chat 
   ],
+
   synchronize: true,
 };
 

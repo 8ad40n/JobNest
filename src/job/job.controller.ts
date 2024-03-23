@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, UseGuards, UsePipes } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post, Req, UseGuards, UsePipes } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { Job } from 'src/entities/job.entity';
@@ -18,6 +18,8 @@ export class JobController {
         @InjectRepository(JobProposal) private readonly jobProposalRepository: Repository<JobProposal>
     ) {}
     
+
+    // Job Post
     @UsePipes()
     @UseGuards(JwtAuthGuard)
     @Post("post")
@@ -26,6 +28,7 @@ export class JobController {
         return this.jobService.jobPost(jobPostDto);
     }
     
+    // User info
     @UseGuards(JwtAuthGuard)
     @Get("user")
     async user(@Req() req) {
@@ -33,6 +36,8 @@ export class JobController {
         return this.userRepository.find({ where: { id: postBy } });
     }
 
+
+    // Job Search
     @UseGuards(JwtAuthGuard)
     @Post("search")
     async searchJobsByTitle(@Body() searchQuery: { keyword: string }): Promise<Job[]> {
@@ -41,6 +46,7 @@ export class JobController {
     }
 
 
+    // Send job proposal
     @UseGuards(JwtAuthGuard)
     @Post("proposal")
     async sendJobProposal(@Body() proposalDto: JobProposalDto, @Req() req): Promise<JobProposal> {
@@ -57,7 +63,51 @@ export class JobController {
         proposalDto.userID = req.user.id;
         return this.jobService.createJobProposal(proposalDto); 
     }
-    
+
+    // see posted jobs
+    @UseGuards(JwtAuthGuard)
+    @Get('postedJobs')
+    async getJobsByUser(@Req() req): Promise<Job[]> {
+        const userId = req.user.id;
+        return this.jobService.getPostedJobs(userId);
+    }
+
+    // see proposals
+    @UseGuards(JwtAuthGuard)
+    @Get(':jobId/proposals')
+    async getJobProposals(@Param('jobId') jobId: number, @Req() req){
+        const userID = req.user.id;
+        return this.jobService.getJobProposals(jobId, userID);
+    }
+
+
+
+    //Accepted Proposal
+    @UseGuards(JwtAuthGuard)
+    @Post(':jobId/proposals/:proposalId/accept')
+    async acceptJobProposal(@Param('jobId') jobId: number, @Param('proposalId') proposalId: number, @Req() req) {
+        const loggedInUserId = req.user.id;
+
+        try {
+            return await this.jobService.acceptJobProposal(jobId, proposalId, loggedInUserId);
+        } catch (error) {
+            throw new NotFoundException('Failed to accept job proposal');
+        }
+    }
+
+
+
+
+    // interest based job matching
+    @UseGuards(JwtAuthGuard)
+    @Get('interest-based')
+    async getInterestBasedJobs(@Req() req): Promise<Job[]> {
+        const loggedInUserId = req.user.id;
+
+        return this.jobService.getInterestBasedJobs(loggedInUserId);
+    }
+
+
 
     
 }

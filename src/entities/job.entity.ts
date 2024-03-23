@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { JobSkill } from "./jobSkill.entity";
 @Entity("job")
 export class Job{
 
@@ -29,6 +30,10 @@ export class Job{
 
     @CreateDateColumn()
     date: Date;
+
+
+    @OneToMany(() => JobSkill, jobSkill => jobSkill.job)
+    jobSkills: JobSkill[];
 
 
 

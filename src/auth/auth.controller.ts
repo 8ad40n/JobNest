@@ -51,7 +51,7 @@ export class AuthController {
 
     @UseGuards(JwtAuthGuard)
     @Get("user")
-    async user(@Req() req: Request)
+    async user(@Req() req)
     {   
         // try {
         //     const cookie = request.cookies['jwt'];
