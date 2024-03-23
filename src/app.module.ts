@@ -9,11 +9,13 @@ import { JobModule } from './job/job.module';
 import { PaymentModule } from './payment/payment.module';
 import { SkillModule } from './skill/skill.module';
 import { ChatModule } from './chat/chat.module';
+import { AppGateway } from './app/app.gateway';
+import { PayModule } from './pay/pay.module';
 // ChatCompletionApiModule
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, BkashModule, ChatModule],
+  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, BkashModule, ChatModule, PayModule],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService, AppGateway]
 })
 export class AppModule {}
