@@ -29,13 +29,13 @@ export class User{
     updateAt: Date;
 
 
+
     @OneToMany(() => UserSkill, userSkill => userSkill.user)
     userSkills: UserSkill[];
+
     
     @BeforeInsert()
     async HashPassword() {
       this.password = await bcrypt.hash(this.password, 12);
     }
-
-
 }

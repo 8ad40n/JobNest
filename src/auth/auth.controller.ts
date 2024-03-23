@@ -12,14 +12,6 @@ export class AuthController {
     constructor(private readonly authService:AuthService, private jwtService: JwtService ) {}
 
 
-    // @Post("register")
-    // async register(@Body("name") name:string, @Body("email") email:string, @Body("password") password:string,)
-    // {
-    //     const hashedPassword = await bcrypt.hash(password, 10);
-
-    //     return this.authService.register({name, email, password: hashedPassword});
-    // }
-
     @Post("register")
     async register(@Body(ValidationPipe) createUserDto: CreateUserDto)
     {
@@ -48,6 +40,8 @@ export class AuthController {
 
 
         response.cookie("jwt", jwt, {httpOnly: true})
+
+        return {jwt:jwt};
         
 
         return "Success";

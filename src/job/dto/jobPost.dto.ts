@@ -1,4 +1,4 @@
-import { IsArray, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class JobPostDto {
 
@@ -9,7 +9,7 @@ export class JobPostDto {
   @IsString()
   description: string;
 
-  @IsOptional() 
+  @IsOptional() // Make postedBy optional
   @IsString()
   postedBy?: string;
 
@@ -19,9 +19,4 @@ export class JobPostDto {
   @IsNotEmpty()
   @IsString()
   duration: string;
-
-  @IsArray()
-  @IsString({ each: true })
-  @IsNotEmpty({ each: true })
-  skills: string[];
 }

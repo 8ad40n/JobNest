@@ -14,9 +14,11 @@ export class UserSkill{
     skillID: number;
 
 
+
     @ManyToOne(() => User, user => user.userSkills)
     user: User;
 
     @ManyToOne(() => Skill, skill => skill.userSkills)
     skill: Skill;
+
 }
