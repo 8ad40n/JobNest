@@ -8,10 +8,11 @@ import { BkashModule } from './bkash/bkash.module';
 import { JobModule } from './job/job.module';
 import { PaymentModule } from './payment/payment.module';
 import { SkillModule } from './skill/skill.module';
+import { ChatModule } from './chat/chat.module';
 // ChatCompletionApiModule
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, BkashModule],
+  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, BkashModule, ChatModule],
   controllers: [AppController],
   providers: [AppService]
 })

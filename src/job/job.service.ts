@@ -4,6 +4,7 @@ import { Job } from 'src/entities/job.entity';
 import { JobProposal } from 'src/entities/jobProposal.entity';
 import { JobSkill } from 'src/entities/jobSkill.entity';
 import { Skill } from 'src/entities/skills.entity';
+import { UserSkill } from 'src/entities/userSkills.entity';
 import { Repository } from 'typeorm';
 import { JobProposalDto } from './dto/jobProposal.dto';
 
@@ -12,7 +13,8 @@ export class JobService {
     constructor(@InjectRepository(Job) private readonly jobRepository: Repository<Job>,
     @InjectRepository(JobProposal) private readonly jobProposalRepository: Repository<JobProposal>,
     @InjectRepository(Skill) private readonly skillRepository: Repository<Skill>,
-    @InjectRepository(JobSkill) private readonly jobSkillRepository: Repository<JobSkill>){}
+    @InjectRepository(JobSkill) private readonly jobSkillRepository: Repository<JobSkill>,
+    @InjectRepository(UserSkill) private readonly userSkillRepository: Repository<UserSkill>){}
 
     // async jobPost(data: any): Promise<Job> {
     //     return this.jobRepository.save(data);
@@ -119,5 +121,26 @@ export class JobService {
         return await this.jobRepository.save(job);
     }
 
+
+
+    async getInterestBasedJobs(loggedInUserId: number): Promise<Job[]> {
+        // Retrieve the logged-in user's skill IDs
+        const userSkills = await this.userSkillRepository.find({
+            where: { userID: loggedInUserId },
+            select: ['skillID'],
+        });
+
+        // Extract skill IDs from userSkills
+        const skillIds = userSkills.map(userSkill => userSkill.skillID);
+
+        // Query jobs where at least one of the job's skills matches with any of the user's skills
+        const matchingJobs = await this.jobRepository.createQueryBuilder('job')
+            .innerJoin('job.jobSkills', 'jobSkill')
+            .andWhere('jobSkill.skillID IN (:...skillIds)', { skillIds })
+            .groupBy('job.jobID') // Group by job ID to avoid duplicate jobs
+            .getMany();
+
+        return matchingJobs;
+    }
 }
 

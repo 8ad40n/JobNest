@@ -1,3 +1,4 @@
+import { Chat } from 'src/entities/chat.entity';
 import { Job } from 'src/entities/job.entity';
 import { JobProposal } from 'src/entities/jobProposal.entity';
 import { JobSkill } from 'src/entities/jobSkill.entity';
@@ -14,7 +15,7 @@ const config: PostgresConnectionOptions = {
   port: 5432,
   username: 'postgres',
   password: '1234',
-  entities: [User,Skill,UserSkill,Job,JobProposal,JobSkill, Payment],
+  entities: [User,Skill,UserSkill,Job,JobProposal,JobSkill, Payment, Chat],
   synchronize: true,
 };
 

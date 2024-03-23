@@ -103,5 +103,17 @@ export class JobController {
 
 
 
+
+    // interest based job matching
+    @UseGuards(JwtAuthGuard)
+    @Get('interest-based')
+    async getInterestBasedJobs(@Req() req): Promise<Job[]> {
+        const loggedInUserId = req.user.id;
+
+        return this.jobService.getInterestBasedJobs(loggedInUserId);
+    }
+
+
+
     
 }

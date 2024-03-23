@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt';
-import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { UserSkill } from './userSkills.entity';
 @Entity("users")
 export class User{
     @PrimaryGeneratedColumn()
@@ -28,6 +29,8 @@ export class User{
     updateAt: Date;
 
 
+    @OneToMany(() => UserSkill, userSkill => userSkill.user)
+    userSkills: UserSkill[];
     
     @BeforeInsert()
     async HashPassword() {
