@@ -12,12 +12,12 @@ import { UsersModule } from './users/users.module';
 
 
 import { PaymentModule } from './payment/payment.module';
-import { SkillModule } from './skill/skill.module';
+//import { SkillModule } from './skill/skill.module';
 import { ChatModule } from './chat/chat.module';
 // ChatCompletionApiModule
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, BkashModule, ChatModule,UsersModule ],
+  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, PaymentModule, BkashModule, ChatModule,UsersModule ],
   controllers: [AppController],
   providers: [AppService]
 })

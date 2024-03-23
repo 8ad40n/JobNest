@@ -22,7 +22,7 @@ const config: PostgresConnectionOptions = {
   port: 5432,
   username: 'postgres',
 
-  password: '1234',
+  password: '5221',
   entities: [
     User,
     Skill,
