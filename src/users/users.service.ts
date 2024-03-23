@@ -5,13 +5,23 @@ import { Repository } from 'typeorm';
 import { User } from 'src/entities/user.entity';
 import { classToPlain, instanceToPlain, plainToClass, plainToClassFromExist, plainToInstance } from 'class-transformer';
 import { profileDto } from './dto/profile.dto';
+import { editProfileDto } from './dto/edit_profile.dto';
+import { Job } from 'src/entities/job.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(Bill) private readonly bilRepository: Repository<Bill>,
-    @InjectRepository(User) private readonly userRepository: Repository<User>
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @InjectRepository(Job) private readonly jobRepository: Repository<Job>,
   ){}
+
+  async editProfile(userId: number, editProfileDto: editProfileDto): Promise<any> {
+    const exObj = await this.userRepository.findOneBy({id: userId});
+    exObj.name = editProfileDto.name;
+    exObj.email = editProfileDto.email;
+    return await this.userRepository.update(userId, exObj);
+  }
 
   async getProfile(userId: any): Promise<profileDto> {
     console.log(userId)
@@ -35,23 +45,12 @@ export class UsersService {
       ]
     })
   }
-  // create(createUserDto: CreateUserDto) {
-  //   return 'This action adds a new user';
-  // }
-
-  // findAll() {
-  //   return `This action returns all users`;
-  // }
-
-  // findOne(id: number) {
-  //   return `This action returns a #${id} user`;
-  // }
-
-  // update(id: number, updateUserDto: UpdateUserDto) {
-  //   return `This action updates a #${id} user`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} user`;
-  // }
+  
+  
+  getUserJobs(userId: any): any {
+    return this.jobRepository.find({where:[
+      {acceptedUserID:userId},
+      {postedBy: userId}
+    ]})
+  }
 }

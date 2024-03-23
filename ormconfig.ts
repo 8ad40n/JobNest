@@ -2,6 +2,7 @@ import { Bill } from 'src/entities/bill.entitiy';
 import { Job } from 'src/entities/job.entity';
 import { JobProposal } from 'src/entities/jobProposal.entity';
 import { JobSkill } from 'src/entities/jobSkill.entity';
+import { Package } from 'src/entities/package.entity';
 import { Skill } from 'src/entities/skills.entity';
 import { Subscription } from 'src/entities/subscription.entity';
 import { User } from 'src/entities/user.entity';
@@ -24,6 +25,7 @@ const config: PostgresConnectionOptions = {
     JobSkill, 
     Bill,
     Subscription,
+    Package
   ],
   synchronize: true,
 };

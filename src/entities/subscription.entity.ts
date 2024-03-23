@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('subscription')
 export class Subscription{
@@ -13,5 +13,14 @@ export class Subscription{
 
     @Column()
     user_id: number;
+
+    @Column()
+    purchase_date: Date;
+
+    @Column()
+    expire_date: Date;
+
+    @Column()
+    package_id: number;
 
 }
