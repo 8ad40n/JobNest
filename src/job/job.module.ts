@@ -6,6 +6,8 @@ import { User } from 'src/entities/user.entity';
 import { UserSkill } from 'src/entities/userSkills.entity';
 import { JobController } from './job.controller';
 import { JobService } from './job.service';
+import { JobSkill } from 'src/entities/jobSkill.entity';
+import { Skill } from 'src/entities/skills.entity';
 
 @Module({
 
