@@ -54,10 +54,10 @@ export class ChatService {
 
   async getMessageHistory(jobId: number, userId: number): Promise<Chat[]> {
     return this.chatRepository.find({
-      where: [
-        { jobId, senderId: userId },
-        { jobId, receiverId: userId }
-      ]
+      // where: [
+      //   { jobId, senderId: userId },
+      //   { jobId, receiverId: userId }
+      // ]
     });
   }
 }

@@ -1,5 +1,6 @@
 import { BadRequestException, Body, Controller, Get, Post, Req, Res, UseGuards, ValidationPipe } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import * as bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
@@ -56,6 +57,7 @@ export class AuthController {
 
 
     @UseGuards(JwtAuthGuard)
+    @ApiBearerAuth('jwt')
     @Get("user")
     async user(@Req() req)
     {   

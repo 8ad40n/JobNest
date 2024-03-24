@@ -130,14 +130,13 @@ export class JobService {
             select: ['skillID'],
         });
 
-        // Extract skill IDs from userSkills
         const skillIds = userSkills.map(userSkill => userSkill.skillID);
-
-        // Query jobs where at least one of the job's skills matches with any of the user's skills
+     
+        
         const matchingJobs = await this.jobRepository.createQueryBuilder('job')
             .innerJoin('job.jobSkills', 'jobSkill')
             .andWhere('jobSkill.skillID IN (:...skillIds)', { skillIds })
-            .groupBy('job.jobID') // Group by job ID to avoid duplicate jobs
+            .groupBy('job.jobID') 
             .getMany();
 
         return matchingJobs;

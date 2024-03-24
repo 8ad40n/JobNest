@@ -9,7 +9,7 @@ export class Job{
     @Column()
     title: string;
 
-    @Column()
+    @Column({nullable:true})
     description: string;
 
 

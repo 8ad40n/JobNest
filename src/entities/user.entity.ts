@@ -15,7 +15,7 @@ export class User{
     @Column({nullable:false})
     password: string;
 
-    @Column({nullable:true})
+    @Column({nullable:true, unique:false})
     type: string;
 
     @Column({nullable:true})
@@ -31,6 +31,8 @@ export class User{
 
     @OneToMany(() => UserSkill, userSkill => userSkill.user)
     userSkills: UserSkill[];
+  feedbackGiven: any;
+  feedbackReceived: any;
     
     @BeforeInsert()
     async HashPassword() {

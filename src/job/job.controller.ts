@@ -11,6 +11,7 @@ import { JobProposalDto } from './dto/jobProposal.dto';
 import { JobService } from './job.service';
 
 @Controller('job')
+@ApiBearerAuth('jwt')
 export class JobController {
     constructor(
         private readonly jobService: JobService, 
@@ -20,7 +21,7 @@ export class JobController {
     ) {}
     
 
-    @ApiBearerAuth('jwt')
+
     // Job Post
     @UsePipes()
     @UseGuards(JwtAuthGuard)
@@ -31,7 +32,6 @@ export class JobController {
     }
     
     // User info
-    @ApiBearerAuth('jwt')
     @UseGuards(JwtAuthGuard)
     @Get("user")
     async user(@Req() req) {
@@ -42,7 +42,6 @@ export class JobController {
 
     // Job Search
     @UseGuards(JwtAuthGuard)
-    @ApiBearerAuth('jwt')
     @Post("search")
     async searchJobsByTitle(@Body() searchQuery: { keyword: string }): Promise<Job[]> {
         const { keyword } = searchQuery;
@@ -52,7 +51,6 @@ export class JobController {
 
     // Send job proposal
     @UseGuards(JwtAuthGuard)
-    @ApiBearerAuth('jwt')
     @Post("proposal")
     async sendJobProposal(@Body() proposalDto: JobProposalDto, @Req() req): Promise<JobProposal> {
         try{
@@ -77,7 +75,6 @@ export class JobController {
 
     // see posted jobs
     @UseGuards(JwtAuthGuard)
-    @ApiBearerAuth('jwt')
     @Get('postedJobs')
     async getJobsByUser(@Req() req): Promise<Job[]> {
         const userId = req.user.id;
@@ -86,7 +83,6 @@ export class JobController {
 
     // see proposals
     @UseGuards(JwtAuthGuard)
-    @ApiBearerAuth('jwt')
     @Get(':jobId/proposals')
     async getJobProposals(@Param('jobId') jobId: number, @Req() req){
         const userID = req.user.id;
@@ -97,7 +93,7 @@ export class JobController {
 
     //Accepted Proposal
     @UseGuards(JwtAuthGuard)
-    @ApiBearerAuth('jwt')
+
     @Post(':jobId/proposals/:proposalId/accept')
     async acceptJobProposal(@Param('jobId') jobId: number, @Param('proposalId') proposalId: number, @Req() req) {
         const loggedInUserId = req.user.id;

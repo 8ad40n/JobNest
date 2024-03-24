@@ -6,7 +6,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppGateway } from './app/app.gateway';
 import { AuthModule } from './auth/auth.module';
-import { BkashModule } from './bkash/bkash.module';
 import { BlogModule } from './blog/blog.module';
 import { ChatModule } from './chat/chat.module';
 import { FeedbackModule } from './feedback/feedback.module';
@@ -21,7 +20,7 @@ import { UsersModule } from './users/users.module';
 // ChatCompletionApiModule
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, BkashModule, ChatModule, PayModule, SubscriptionModule,UsersModule,PackageModule, BlogModule, FeedbackModule, HelpRequestModule, SwaggerModule],
+  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, ChatModule, PayModule, SubscriptionModule,UsersModule,PackageModule, BlogModule, FeedbackModule, HelpRequestModule, SwaggerModule],
   controllers: [AppController],
   providers: [AppService, AppGateway]
 })

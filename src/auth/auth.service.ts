@@ -11,7 +11,13 @@ export class AuthService {
 
     async register(data: any): Promise<User>
     {
-        return this.userRepository.save(data);
+        const user = new User();
+        user.name= data.name;
+        user.email= data.email;
+        user.password= data.password;
+        user.type= "user";
+    
+        return this.userRepository.save(user);
     }
 
     async findOne(email: any): Promise<User> {
