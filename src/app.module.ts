@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { SwaggerModule } from '@nestjs/swagger';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import config from 'ormconfig';
 import { AppController } from './app.controller';
@@ -8,6 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { BkashModule } from './bkash/bkash.module';
 import { BlogModule } from './blog/blog.module';
 import { ChatModule } from './chat/chat.module';
+import { FeedbackModule } from './feedback/feedback.module';
+import { HelpRequestModule } from './help-request/help-request.module';
 import { JobModule } from './job/job.module';
 import { PackageModule } from './package/package.module';
 import { PayModule } from './pay/pay.module';
@@ -18,7 +21,7 @@ import { UsersModule } from './users/users.module';
 // ChatCompletionApiModule
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, BkashModule, ChatModule, PayModule, SubscriptionModule,UsersModule,PackageModule, BlogModule],
+  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, BkashModule, ChatModule, PayModule, SubscriptionModule,UsersModule,PackageModule, BlogModule, FeedbackModule, HelpRequestModule, SwaggerModule],
   controllers: [AppController],
   providers: [AppService, AppGateway]
 })

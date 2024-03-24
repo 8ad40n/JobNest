@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { AddUserSkillDto } from './dto/addUserSkill.dto';
 import { SkillService } from './skill.service';
@@ -9,6 +10,7 @@ export class SkillController {
     
 
     @UseGuards(JwtAuthGuard)
+    @ApiBearerAuth('jwt')
     @Post("add")
     async addUserSkill(@Body() addUserSkillDto: AddUserSkillDto, @Req() req): Promise<any> {
         const userID = req.user.id;
@@ -24,6 +26,7 @@ export class SkillController {
 
 
     @UseGuards(JwtAuthGuard)
+    @ApiBearerAuth('jwt')
     @Get("show")
     async getUserSkillNames(@Req() req): Promise<any> {
         const userID = req.user.id;

@@ -12,24 +12,23 @@ async function bootstrap() {
     credentials:true
   });
 
-  const config = new DocumentBuilder()
+  const options = new DocumentBuilder()
     .setTitle('JobNest')
-    .setDescription('The JobNest API description')
-    .setVersion('1.0')
-    .addTag('JobNest')
-    .addBearerAuth(
-      {
-        description: 'Default JWT Authorization',
-        type: 'http',
-        in: 'header',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
-      'defaultBearerAuth',
-    )
+    .setDescription('')
+    .setVersion('7.1.8')
+    .addBearerAuth() 
+    .addTag('api')
     .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+
+    
+  const document = SwaggerModule.createDocument(app, options);
+
+
+  SwaggerModule.setup('api', app, document, {
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+  });
 
   await app.listen(3000);
 }

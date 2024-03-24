@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Req, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { BlogService } from './blog.service';
 import { createBlogDto } from './dto/create-blog.dto';
@@ -19,6 +20,7 @@ export class BlogController
 
 
     @UseGuards(JwtAuthGuard)
+    @ApiBearerAuth('jwt')
     @Post("add")
     @UsePipes(ValidationPipe)
 
@@ -29,6 +31,7 @@ export class BlogController
     }
 
 
+    
     @Get("show")
     @UsePipes(ValidationPipe)
 

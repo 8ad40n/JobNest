@@ -1,5 +1,6 @@
 // chat.controller.ts
 import { Body, Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { ChatService } from './chat.service';
 
@@ -8,6 +9,7 @@ import { ChatService } from './chat.service';
 export class ChatController {
   constructor(private readonly chatService: ChatService) {}
 
+  @ApiBearerAuth('jwt')
   @Post(':jobId')
   async sendMessage(
     @Param('jobId') jobId: number,
@@ -20,6 +22,7 @@ export class ChatController {
     return this.chatService.sendMessage(jobId, senderId, receiverId, message);
   }
 
+  @ApiBearerAuth('jwt')
   @Get(':jobId/history')
   async getMessageHistory(
     @Param('jobId') jobId: number,

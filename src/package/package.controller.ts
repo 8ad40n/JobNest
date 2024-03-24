@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
-import { PackageService } from './package.service';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { CreatePackageDto } from './dto/create-package.dto';
 import { UpdatePackageDto } from './dto/update-package.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
+import { PackageService } from './package.service';
 
 @Controller('package')
 export class PackageController {
@@ -27,6 +28,7 @@ export class PackageController {
 
 
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('jwt')
   @UsePipes(new ValidationPipe)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePackageDto: UpdatePackageDto) {
@@ -35,6 +37,7 @@ export class PackageController {
 
   
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('jwt')
   @UsePipes(new ValidationPipe)
   @Delete(':id')
   remove(@Param('id') id: string) {

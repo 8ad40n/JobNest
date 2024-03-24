@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, UsePipes, ValidationPipe, Req } from '@nestjs/common';
-import { SubscriptionService } from './subscription.service';
-import { CreateSubscriptionDto } from './dto/create-subscription.dto';
-import { UpdateSubscriptionDto } from './dto/update-subscription.dto';
+import { Body, Controller, Post, Req, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
+import { CreateSubscriptionDto } from './dto/create-subscription.dto';
+import { SubscriptionService } from './subscription.service';
 
 @Controller('subscription')
 export class SubscriptionController {
@@ -11,6 +11,7 @@ export class SubscriptionController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('jwt')
   @UsePipes(new ValidationPipe)
   create(@Body() createSubscriptionDto: CreateSubscriptionDto, @Req() req) {
     const user_id: number = req.user.id;
