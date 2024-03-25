@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { SwaggerModule } from '@nestjs/swagger';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import config from 'ormconfig';
+import { AdminModule } from './admin/admin.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppGateway } from './app/app.gateway';
@@ -20,7 +21,7 @@ import { UsersModule } from './users/users.module';
 // ChatCompletionApiModule
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, ChatModule, PayModule, SubscriptionModule,UsersModule,PackageModule, BlogModule, FeedbackModule, HelpRequestModule, SwaggerModule],
+  imports: [TypeOrmModule.forRoot(config), AuthModule, JobModule, SkillModule, PaymentModule, ChatModule, PayModule, SubscriptionModule,UsersModule,PackageModule, BlogModule, FeedbackModule, HelpRequestModule, SwaggerModule, AdminModule],
   controllers: [AppController],
   providers: [AppService, AppGateway]
 })
