@@ -6,3 +6,17 @@
 *{
   font-family: "Roboto";
 }
+.banner-image{
+  width: 50vw;
+}
+.shadowCSA{
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width:576px){
+  .banner-image{
+    width: 100vw;
+  }
+  
+}
