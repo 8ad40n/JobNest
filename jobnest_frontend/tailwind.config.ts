@@ -1,12 +1,16 @@
-import type { Config } from "tailwindcss"
+import flowbite from "flowbite-react/tailwind";
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
+    "./node_modules/flowbite-react/lib/**/*.js",
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    "./public/**/*.html",
+    flowbite.content(),
 	],
   prefix: "",
   theme: {
@@ -74,7 +78,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require('daisyui'), require("flowbite/plugin")],
+  plugins: [require("tailwindcss-animate"), require('daisyui'), require("flowbite/plugin"),flowbite.plugin(),],
   daisyui: {
     themes: false, // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
     darkTheme: "light", // name of one of the included themes for dark mode

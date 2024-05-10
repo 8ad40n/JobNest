@@ -1,3 +1,9 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionPanel,
+  AccordionTitle,
+} from "flowbite-react";
 import Image from "next/image";
 import banner from "../assets/banner2.gif";
 import create from "../assets/createHomePage.png";
@@ -28,17 +34,21 @@ export default function Home() {
           <Image src={banner} alt="banner" className="rounded" />
         </div>
       </div>
+
+
+
       {/* create, search, apply */}
 
-      <div className="flex justify-between p-3 shadowCSA">
+      <div className="sm:flex-col md:flex lg:flex-row justify-around items-center p-5 shadowCSA">
         <div className="p-3">
           <div className="flex justify-center ">
             <Image src={create} alt="create" className="rounded text-center" />
           </div>
           <div className="text-center">
             <h1 className="font-bold text-xl">Create Account</h1>
-            <p className="font-light">
-              First you have to create a <br />account here
+            <p className="font-light text-gray-500">
+              First you have to create a <br />
+              account here
             </p>
           </div>
         </div>
@@ -48,8 +58,9 @@ export default function Home() {
           </div>
           <div className="text-center">
             <h1 className="font-bold text-xl">Search work</h1>
-            <p className="font-light">
-              Search the best <br />work here
+            <p className="font-light text-gray-500">
+              Search the best <br />
+              work here
             </p>
           </div>
         </div>
@@ -59,13 +70,57 @@ export default function Home() {
           </div>
           <div className="text-center">
             <h1 className="font-bold text-xl">Save and apply</h1>
-            <p className="font-light">
-              Apply or save and <br />start your work
+            <p className="font-light text-gray-500">
+              Apply or save and <br />
+              start your work
             </p>
           </div>
         </div>
       </div>
+
+      {/* FAQ */}
+      <div className="mt-20">
+        <h1 className="text-3xl font-bold">Frequently Asked Questions</h1><br />
+        <Accordion>
+          <AccordionPanel>
+            <AccordionTitle>What is JobNest?</AccordionTitle>
+            <AccordionContent>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+              JobNest is an online platform that connects sellers with tasks and buyers seeking freelance work. It provides a dynamic marketplace for earning and outsourcing opportunities.
+              </p>
+              
+            </AccordionContent>
+          </AccordionPanel>
+          <AccordionPanel>
+            <AccordionTitle>How does JobNest work for sellers?</AccordionTitle>
+            <AccordionContent>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+              Sellers can post tasks on JobNest by providing task descriptions, requirements, and pricing. They can then review applications from buyers, communicate with applicants, and award tasks to the most suitable candidates.
+              </p>
+            </AccordionContent>
+          </AccordionPanel>
+          <AccordionPanel>
+            <AccordionTitle>
+            What kind of tasks can be posted on JobNest?
+            </AccordionTitle>
+            <AccordionContent>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+              JobNest supports a diverse range of tasks across various categories, including graphic design, writing, programming, marketing, and more. Sellers have the flexibility to post tasks related to their specific needs and requirements.
+              </p>
+            </AccordionContent>
+          </AccordionPanel>
+          <AccordionPanel>
+            <AccordionTitle>
+            How do buyers apply for tasks on JobNest?
+            </AccordionTitle>
+            <AccordionContent>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+              Buyers can browse available tasks on JobNest and submit proposals for tasks they are interested in. They can provide details about their skills, experience, and why they are a good fit for the task. Sellers then review these applications and select the most suitable candidates.
+              </p>
+            </AccordionContent>
+          </AccordionPanel>
+        </Accordion>
+      </div>
     </main>
-    
   );
 }
