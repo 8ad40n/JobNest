@@ -20,6 +20,10 @@ export class JobService {
     //     return this.jobRepository.save(data);
     // }
 
+    async jobs(): Promise<Job[]> {
+        return this.jobRepository.find();
+    }
+    
     async jobPost(data: any): Promise<Job> {
         const job = await this.jobRepository.save(data);
 

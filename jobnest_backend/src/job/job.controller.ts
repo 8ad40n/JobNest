@@ -21,6 +21,11 @@ export class JobController {
     ) {}
     
 
+    //see all jobs
+    @Get("")
+    async jobs() {
+        return this.jobService.jobs();
+    }
 
     // Job Post
     @UsePipes()
