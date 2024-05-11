@@ -1,10 +1,23 @@
 "use client"
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Navbar: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const [userStatus, setUserStatus] = useState<boolean>(false);
+  useEffect(() => {
+    const interval = setInterval(()=>{
+      const token: string | null = localStorage.getItem('token');
+      setUserStatus(token !== null);
+      // console.log(token != null)
+    },1000);
+    // return () => clearInterval(interval);
+    
+  },[])
+  const doLogOut = () => {
+    localStorage.removeItem('token');
+    setUserStatus(false);
+  }
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -15,17 +28,27 @@ const Navbar: React.FC = () => {
         <Link href="/">
           <span className="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer">
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Job<span className="text-red-700">Nest</span> 
+              Job<span className="text-red-700">Nest</span>
             </span>
           </span>
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <button
-            type="button"
-            className="text-white bg-red-700 hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Login
-          </button>
+          {
+            userStatus ?
+              <button onClick={doLogOut}
+                type="button"
+                className="text-white bg-red-700 hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Logout
+              </button>
+              :
+              <Link href={"/login"}
+                type="button"
+                className="text-white bg-red-700 hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Login
+              </Link>
+          }
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"

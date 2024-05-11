@@ -21,6 +21,9 @@ export class AuthService {
     }
 
     async findEmail(email: any){
+        if(!email){
+            return null;
+        }
         return await this.userRepository.findOne({ where: { email: email }
         });
     }
