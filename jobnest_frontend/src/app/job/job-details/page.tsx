@@ -24,7 +24,11 @@ export default function JobDetails({
         <Link
           className="text-white bg-red-700 px-3 py-1 rounded-xl hover:bg-black"
           href={{
-            pathname: "/",
+            pathname: "/job/job-details/proposal",
+            query: {
+                JobID: searchParams.JobID,
+              },
+
           }}
         >
           Send proposal
