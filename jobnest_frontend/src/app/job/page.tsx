@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 
 export default function Job() {
   const [myJobs, setMyJobs] = useState([]);
+  const [search, setSearch] = useState("");
   
 
   useEffect(() => {
     axios.get("http://localhost:8000/job").then((res) => setMyJobs(res.data));
   }, []);
+
   return (
     <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
       <div>
@@ -23,9 +25,22 @@ export default function Job() {
         </p>
         <button>Interested in hiring?</button>
       </div>
+      {/* search */}
+
+      <input type="text" placeholder="Search..." onChange={(e)=>setSearch(e.target.value)}/>
 
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-4">
-        {myJobs.map((post: any) => {
+        {myJobs.filter((post:any)=>{
+            if(search==="")
+                {
+                    return post;
+                }
+            else if(post.title?.toLowerCase()?.includes(search.toLowerCase()))
+                {
+                    return post;
+                }
+        })
+        .map((post: any) => {
           const { jobID, title, description, budget, duration, date } = post;
           return (
             <div
