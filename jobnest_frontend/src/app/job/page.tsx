@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function Job() {
   const [myJobs, setMyJobs] = useState([]);
+  
 
   useEffect(() => {
     axios.get("http://localhost:8000/job").then((res) => setMyJobs(res.data));
