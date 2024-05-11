@@ -1,6 +1,7 @@
 'use client';
 import { getAxiosConfig } from "@/components/axiosConfig";
 import { formToJSON } from "axios";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -28,6 +29,7 @@ export default function Login(){
                 <input type="submit" value="Submit" /><br />
                 <span>{loginStatus}</span>
             </form>
+            <Link href="/register">Sign Up</Link>
         </main>
     )
 }
