@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function PostedJob() {
@@ -31,6 +32,11 @@ export default function PostedJob() {
             <p>Budget: {job.budget} TK</p>
             <p>Duration: {job.duration}</p>
             <p>Date: {job.date}</p>
+            <Link href={{pathname: "/job/postedJob/postedProposal", 
+              query: {
+                JobID: job.jobID,
+              },
+            }}>See Proposal</Link>
           </div>
         ))}
       </div>
