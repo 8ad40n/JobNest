@@ -1,5 +1,4 @@
-import { Body, Controller, Post, UseGuards, ValidationPipe } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
+import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
 import { ChatCompletionApiService } from './chat-completion-api.service';
 import { GetChatCompletionAnswerInputDTO } from './dto/chat-completion-answer.dto';
 
@@ -7,7 +6,7 @@ import { GetChatCompletionAnswerInputDTO } from './dto/chat-completion-answer.dt
 export class ChatCompletionApiController {
   constructor(private readonly service: ChatCompletionApiService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post()
   getChatCompletionMessage(
     @Body(new ValidationPipe({ transform: true }))
