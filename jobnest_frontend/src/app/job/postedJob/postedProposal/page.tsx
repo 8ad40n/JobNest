@@ -1,5 +1,6 @@
 "use client"
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 interface Proposal {
@@ -18,6 +19,7 @@ export default function PostedProposal({
         JobID: any;
     };
 }) {
+    const router = useRouter();
     const [proposals, setProposals] = useState<Proposal[]>([]);
 
     useEffect(() => {
@@ -50,6 +52,7 @@ export default function PostedProposal({
 
             try {
                 await axios.post(`http://localhost:8000/job/${searchParams.JobID}/proposals/${proposalId}/accept`, null, config);
+                router.push('/job/postedJob/acceptedJob');
                 console.log('Proposal confirmed successfully');
             } catch (error) {
                 console.error('Error confirming proposal:', error);

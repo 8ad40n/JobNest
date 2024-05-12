@@ -5,7 +5,7 @@ import { JobProposal } from 'src/entities/jobProposal.entity';
 import { JobSkill } from 'src/entities/jobSkill.entity';
 import { Skill } from 'src/entities/skills.entity';
 import { UserSkill } from 'src/entities/userSkills.entity';
-import { Repository } from 'typeorm';
+import { IsNull, MoreThanOrEqual, Not, Repository } from 'typeorm';
 import { JobProposalDto } from './dto/jobProposal.dto';
 
 @Injectable()
@@ -19,6 +19,32 @@ export class JobService {
     // async jobPost(data: any): Promise<Job> {
     //     return this.jobRepository.save(data);
     // }
+    async getJobsWithAcceptedProposals(loggedInUserId: number): Promise<Job[]> {
+        // Find all jobs where acceptedUserID is not null
+        const jobsWithAcceptedProposals = await this.jobRepository.find({
+          where: { acceptedUserID: Not(IsNull()) },
+        });
+    
+        // Filter jobs where postedBy is the logged-in user
+        const filteredJobs = jobsWithAcceptedProposals.filter(
+          (job) => job.postedBy === loggedInUserId,
+        );
+    
+        return filteredJobs;
+      }
+    
+      async getJobProposalsByJobIds(
+        jobIds: number[],
+        loggedInUserId: number,
+      ): Promise<JobProposal[]> {
+        // Find all job proposals where jobID is in jobIds array and postedBy is logged-in user
+        return this.jobProposalRepository.find({
+          where: {
+            userID: loggedInUserId,
+            jobID: MoreThanOrEqual(Math.min(...jobIds)),
+          },
+        });
+      }
 
     async jobs(): Promise<Job[]> {
         return this.jobRepository.find();

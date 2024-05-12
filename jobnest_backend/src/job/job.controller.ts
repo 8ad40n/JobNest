@@ -27,6 +27,14 @@ export class JobController {
         return this.jobService.jobs();
     }
 
+    //job that has been accepted
+    @UseGuards(JwtAuthGuard)
+    @Get('jobs-with-accepted-proposals')
+    async getJobsWithAcceptedProposals(@Req() req): Promise<Job[]> {
+      const loggedInUserId = req.user.id;
+      return this.jobService.getJobsWithAcceptedProposals(loggedInUserId);
+    }
+
     // Job Post
     @UsePipes()
     @UseGuards(JwtAuthGuard)
