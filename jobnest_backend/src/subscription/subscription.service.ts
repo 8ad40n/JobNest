@@ -32,6 +32,10 @@ export class SubscriptionService {
     return await this.subscriptionRepo.save(obj);
   }
 
+  async getSubscriptionByUserId(userId: number) {
+    return await this.subscriptionRepo.find({where:{user_id: userId}})
+  }
+
   findAll() {
     return `This action returns all subscription`;
   }
