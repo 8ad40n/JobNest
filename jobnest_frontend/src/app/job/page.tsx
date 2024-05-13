@@ -61,7 +61,7 @@ export default function Job() {
                 <p className="text-2xl font-medium py-0">
                   {title}
                 </p>
-                <p className="text-gray-400 py-2">Posted on: {date}</p>
+                <p className="text-gray-400 py-2">Posted on: {new Date(date).toLocaleDateString()}</p>
                 <div className="py-6 flex justify-between">
                   <p>
                     Budget: <span className="text-gray-400">{budget} TK</span>
