@@ -1,4 +1,5 @@
 "use client";
+import { UserNavbar } from "@/components/userNavbar";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -23,6 +24,9 @@ export default function PostedJob() {
   }, []);
 
   return (
+    <>
+    <UserNavbar/>
+
     <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
       <div>
         {myJobs.map((job:any) => (
@@ -45,6 +49,6 @@ export default function PostedJob() {
           </div>
         ))}
       </div>
-    </main>
+    </main></>
   );
 }

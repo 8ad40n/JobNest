@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
           >
             Login
           </button> */}
-          <Link className="text-white bg-red-700 hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" href={"/login"}>Login</Link>
+          <Link className="text-white bg-red-700 hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-xl" href={"/login"}>Login</Link>
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
@@ -56,44 +56,6 @@ const Navbar: React.FC = () => {
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-sticky"
         >
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <Link href="/">
-              <span className="cursor-pointer">
-                <li>
-                  <span className="block py-2 px-3 text-white bg-red-700 rounded md:bg-transparent md:text-red-700 md:p-0 md:dark:text-red-700" aria-current="page">
-                    Home
-                  </span>
-                </li>
-              </span>
-            </Link>
-            <Link href="/job">
-              <span className="cursor-pointer">
-                <li>
-                  <span className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    Find Work
-                  </span>
-                </li>
-              </span>
-            </Link>
-            <Link href="/job/jobPost">
-              <span className="cursor-pointer">
-                <li>
-                  <span className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    Post Job
-                  </span>
-                </li>
-              </span>
-            </Link>
-            <Link href="/">
-              <span className="cursor-pointer">
-                <li>
-                  <span className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    Contact
-                  </span>
-                </li>
-              </span>
-            </Link>
-          </ul>
         </div>
       </div>
     </nav>

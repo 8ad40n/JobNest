@@ -25,7 +25,7 @@ export class PayService {
       cancel_url: 'http://localhost:3000/pay/failed/checkout/session',
     });
 
-    const job = await this.jobRepository.findOne({ where: { jobID:38} });
+    const job = await this.jobRepository.findOne({ where: { jobID:45} });
 
       // Check if job is found
       if (!job) {

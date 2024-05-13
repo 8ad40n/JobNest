@@ -1,4 +1,5 @@
 "use client";
+import { UserNavbar } from "@/components/userNavbar";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -56,6 +57,9 @@ export default function AddJob() {
   };
 
   return (
+    <> 
+    <UserNavbar/>
+
     <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
       <div>
         <div className="flex justify-between items-center mb-16 bg-red-100 p-8 rounded-2xl">
@@ -158,6 +162,6 @@ export default function AddJob() {
           </div>
         </form>
       </div>
-    </main>
+    </main></>
   );
 }

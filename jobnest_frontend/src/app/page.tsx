@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar";
 import {
   Accordion,
   AccordionContent,
@@ -13,6 +14,8 @@ import search from "../assets/searchHomePage.png";
 
 export default function Home() {
   return (
+    <>
+    <Navbar/>
     <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
       {/* banner */}
       <div className="sm:flex-col-reverse sm:justify-center md:flex md:items-center md:justify-between lg:flex-row lg:items-center lg:justify-between mb-2">
@@ -121,5 +124,6 @@ export default function Home() {
         </Accordion>
       </div>
     </main>
+    </>
   );
 }
