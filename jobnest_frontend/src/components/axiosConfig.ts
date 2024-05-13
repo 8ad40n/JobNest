@@ -5,7 +5,7 @@ export function getAxiosConfig(): AxiosInstance{
         baseURL:"http://localhost:8000/"
     })
     const token : string | null = localStorage.getItem('token');
-    console.log(token)
+    // console.log(token)
     if(token !== null){
         axiosConfig.defaults.headers.common["Authorization"]="Bearer "+token;
     }
