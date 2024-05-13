@@ -5,13 +5,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Package } from 'src/entities/package.entity';
 import { Repository } from 'typeorm';
 import { Subscription } from 'src/entities/subscription.entity';
+import { User } from 'src/entities/user.entity';
 
 @Injectable()
 export class SubscriptionService {
 
   constructor(
     @InjectRepository(Package) private readonly packageRepo:Repository<Package>,
-    @InjectRepository(Subscription) private readonly subscriptionRepo:Repository<Subscription>
+    @InjectRepository(Subscription) private readonly subscriptionRepo:Repository<Subscription>,
   ){}
 
   async create(createSubscriptionDto: CreateSubscriptionDto, user_id: number) {
@@ -28,7 +29,7 @@ export class SubscriptionService {
     obj.user_id = user_id;
     obj.subscription_type = package_obj.type;
     obj.subscription_status = "active";
-    return await this.subscriptionRepo.save(obj)
+    return await this.subscriptionRepo.save(obj);
   }
 
   findAll() {

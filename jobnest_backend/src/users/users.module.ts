@@ -6,9 +6,10 @@ import { User } from 'src/entities/user.entity';
 import { LoggerMiddleware } from './logger.middleware';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
+import { Subscription } from 'src/entities/subscription.entity';
 
 @Module({
-  imports: [ TypeOrmModule.forFeature([Bill, User, Job])],
+  imports: [ TypeOrmModule.forFeature([Bill, User, Job, Subscription])],
   controllers: [UsersController],
   providers: [UsersService],
 })

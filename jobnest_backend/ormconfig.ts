@@ -20,7 +20,7 @@ const config: PostgresConnectionOptions = {
   host: 'localhost',
   port: 5432,
   username: 'postgres',
-  password: '1234',
+  password: 'tiger123',
   entities: [User,Skill,UserSkill,Job,JobProposal,JobSkill, Payment, Chat, Bill, Package, Subscription, Blog,Feedback, HelpRequest],
   synchronize: true,
 };

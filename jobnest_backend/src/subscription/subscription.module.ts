@@ -4,9 +4,10 @@ import { SubscriptionController } from './subscription.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Subscription } from 'src/entities/subscription.entity';
 import { Package } from 'src/entities/package.entity';
+import { User } from 'src/entities/user.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Subscription, Package])],
+  imports:[TypeOrmModule.forFeature([Subscription, Package, ])],
   controllers: [SubscriptionController],
   providers: [SubscriptionService],
 })

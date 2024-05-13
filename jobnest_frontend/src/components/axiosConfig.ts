@@ -7,7 +7,7 @@ export function getAxiosConfig(): AxiosInstance{
     const token : string | null = localStorage.getItem('token');
     console.log(token)
     if(token !== null){
-        axiosConfig.defaults.headers.common["Authorization"]="Bearer "+localStorage.getItem("token");
+        axiosConfig.defaults.headers.common["Authorization"]="Bearer "+token;
     }
     return axiosConfig;
 }
