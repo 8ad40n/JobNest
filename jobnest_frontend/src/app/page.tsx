@@ -5,6 +5,7 @@ import {
   AccordionTitle,
 } from "flowbite-react";
 import Image from "next/image";
+import Link from "next/link";
 import banner from "../assets/banner2.gif";
 import create from "../assets/createHomePage.png";
 import apply from "../assets/saveHomePage.png";
@@ -26,9 +27,7 @@ export default function Home() {
             Right now. Right here.
           </p>
           <br />
-          <button className="text-white bg-red-700 px-4 py-2 hover:bg-black rounded-full">
-            Browse now
-          </button>
+          <Link href="/job" className="text-white bg-red-700 px-4 py-2 hover:bg-black rounded-full">Browse now</Link>
         </div>
         <div className="rounded-md banner-image">
           <Image src={banner} alt="banner" className="rounded" />

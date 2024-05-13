@@ -34,23 +34,6 @@ export default function Chat() {
     }
   };
 
-  const handleSendMessage = async () => {
-    try {
-      await axios.post(`http://localhost:8000/chat/${jobId}`, {
-        message: messageContent,
-      }, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      // After sending message, fetch updated chat history
-      fetchChatHistory();
-      // Clear the message input
-      setMessageContent('');
-    } catch (error) {
-      console.error('Error sending message:', error);
-    }
-  };
 
   return (
     <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
@@ -70,7 +53,7 @@ export default function Chat() {
           onChange={(e) => setMessageContent(e.target.value)}
         />
         <button 
-          onClick={handleSendMessage} 
+          onClick={fetchChatHistory} 
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Send

@@ -16,10 +16,17 @@
 .jobCard{
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
+.jobImg{
+  width: 50vw;
+}
 
 @media screen and (max-width:576px){
   .banner-image{
     width: 100vw;
+  }
+  
+  .jobImg{
+    width: 80vw;
   }
   
 }
