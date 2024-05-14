@@ -89,7 +89,7 @@ export function UserNavbar() {
           }
         >
           <Dropdown.Header>
-            <span className="block text-sm">JobNest</span>
+            <span className="block text-sm">{data?.name}</span>
             <span className="block truncate text-sm font-medium">{data?.email}</span>
           </Dropdown.Header>
           <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
