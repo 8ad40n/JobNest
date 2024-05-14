@@ -29,6 +29,7 @@ export default function PostedJob() {
 
     <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
       <div>
+        <h1 className="text-2xl font-medium">Explore all of your posted jobs</h1><br /><br />
         {myJobs.map((job:any) => (
           <div key={job.jobID} className="bg-white shadow-md rounded-xl p-6 mb-6">
             <h2 className="text-xl font-semibold mb-2">{job.title}</h2>

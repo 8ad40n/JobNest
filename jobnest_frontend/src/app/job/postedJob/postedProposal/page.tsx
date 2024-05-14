@@ -1,4 +1,5 @@
 "use client"
+import { UserNavbar } from '@/components/userNavbar';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -61,8 +62,10 @@ export default function PostedProposal({
     };
 
     return (
+        <>
+        <UserNavbar/>
         <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
-            <h1>Proposals for Job ID: {searchParams.JobID}</h1>
+            <h1 className='text-2xl font-medium'>Proposals for Job ID: {searchParams.JobID}</h1>
             {proposals.length > 0 ? (
                 <table className="w-full border-collapse border border-gray-200">
                     <thead className="bg-gray-200">
@@ -93,6 +96,6 @@ export default function PostedProposal({
             ) : (
                 <p>No proposals found for this job.</p>
             )}
-        </main>
+        </main></>
     );
 }

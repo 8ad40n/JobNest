@@ -30,7 +30,7 @@ export default function Home() {
             Right now. Right here.
           </p>
           <br />
-          <Link href="/job" className="text-white bg-red-700 px-4 py-2 hover:bg-black rounded-full">Browse now</Link>
+          <Link href="/login" className="text-white bg-red-700 px-4 py-2 hover:bg-black rounded-full">Browse now</Link>
         </div>
         <div className="rounded-md banner-image">
           <Image src={banner} alt="banner" className="rounded" />
