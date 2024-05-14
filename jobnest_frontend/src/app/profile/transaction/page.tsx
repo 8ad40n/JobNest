@@ -1,62 +1,77 @@
 'use client';
 import { getAxiosConfig } from "@/components/axiosConfig";
-import Link from "next/link";
+import { UserNavbar } from "@/components/userNavbar";
 import { useEffect, useState } from "react";
 
-interface transaction {
+interface Transaction {
     billId: number | "";
     amount: number | "";
     status: string | "";
     sendUserId: number | "";
-    recievedUserId: number | "";
-    transaction: string | "";
+    receivedUserId: number | "";
+    transactionCode: string | "";
 }
 
 export default function TransactionPage() {
-    const [transactionData, setTransactionData] = useState<Array<transaction>>()
+    const [transactionData, setTransactionData] = useState<Transaction[]>([]);
     
     const loadTransactionData = async () => {
         try {
-            const res = await getAxiosConfig().get('users/transaction')
-            console.log(res.data)
+            const res = await getAxiosConfig().get('users/transaction');
             setTransactionData(res.data);
         } catch (ex) {
-            console.log(ex)
+            console.log(ex);
         }
+    };
 
-    }
     useEffect(() => {
         loadTransactionData();
-    }, [])
+    }, []);
+
     return (
-        <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
-            <div>
-                <span>transaction Data</span>
-                <table className="border-collapse border border-slate-400">
-                    <thead>
-                        <tr>
-                            <th className="border border-slate-300">Bill Id</th>
-                            <th className="border border-slate-300">Amount</th>
-                            <th className="border border-slate-300">Status</th>
-                            <th className="border border-slate-300">Send User Id</th>
-                            <th className="border border-slate-300">Recieved User Id</th>
-                            <th className="border border-slate-300">Transaction Code</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {transactionData?.map((sd) =>
+        <><UserNavbar/>
+        <main className="flex min-h-screen flex-col justify-between p-8 sm:p-24 container mx-auto px-1 lg:px-20 md:px-10">
+            <div className="bg-white rounded-lg shadow-md p-6">
+                <h1 className="text-3xl font-bold mb-4">Transaction Data</h1>
+                <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
                             <tr>
-                                <td className="border border-slate-300">{sd?.billId}</td>
-                                <td className="border border-slate-300">{sd?.amount}</td>
-                                <td className="border border-slate-300">{sd?.status}</td>
-                                <td className="border border-slate-300">{sd?.sendUserId}</td>
-                                <td className="border border-slate-300">{sd?.recievedUserId}</td>
-                                <td className="border border-slate-300">{sd?.transaction}</td>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Bill Id
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Amount
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Send User Id
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Received User Id
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Transaction Code
+                                </th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {transactionData.map((transaction, index) => (
+                                <tr key={index}>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.billId}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.amount}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.status}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.sendUserId}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.receivedUserId}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.transactionCode}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </main>
-    )
+        </main></>
+    );
 }

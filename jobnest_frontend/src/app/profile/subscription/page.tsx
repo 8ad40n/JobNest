@@ -1,62 +1,77 @@
 'use client';
 import { getAxiosConfig } from "@/components/axiosConfig";
-import Link from "next/link";
+import { UserNavbar } from "@/components/userNavbar";
 import { useEffect, useState } from "react";
 
-interface subscription {
-    subscription_id: number | "",
-    subscription_type: string | "",
-    subscription_status: string | "",
-    purchase_date: Date | "",
-    expire_date: Date | "",
-    package_id: number | "",
+interface Subscription {
+    subscription_id: number | "";
+    subscription_type: string | "";
+    subscription_status: string | "";
+    purchase_date: string | "";
+    expire_date: string | "";
+    package_id: number | "";
 }
 
 export default function SubscriptionPage() {
-    const [subscriptionData, setSubscriptionData] = useState<Array<subscription>>()
+    const [subscriptionData, setSubscriptionData] = useState<Subscription[]>([]);
     
     const loadSubscriptionData = async () => {
         try {
-            const res = await getAxiosConfig().get('subscription')
-            console.log(res.data)
+            const res = await getAxiosConfig().get('subscription');
             setSubscriptionData(res.data);
         } catch (ex) {
-            console.log(ex)
+            console.log(ex);
         }
+    };
 
-    }
     useEffect(() => {
         loadSubscriptionData();
-    }, [])
+    }, []);
+
     return (
-        <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
-            <div>
-                <span>Subscription Data</span>
-                <table className="border-collapse border border-slate-400">
-                    <thead>
-                        <tr>
-                            <th className="border border-slate-300">Subscription Id</th>
-                            <th className="border border-slate-300">Subscription Type</th>
-                            <th className="border border-slate-300">Subscription Status</th>
-                            <th className="border border-slate-300">Purchase Date</th>
-                            <th className="border border-slate-300">Expire Date</th>
-                            <th className="border border-slate-300">Package Id</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {subscriptionData?.map((sd) =>
+        <><UserNavbar/>
+        <main className="flex min-h-screen flex-col justify-between p-8 sm:p-24 container mx-auto px-1 lg:px-20 md:px-10">
+            <div className="bg-white rounded-lg shadow-md p-6">
+                <h1 className="text-3xl font-bold mb-4">Subscription Data</h1>
+                <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
                             <tr>
-                                <td className="border border-slate-300">{sd?.subscription_id}</td>
-                                <td className="border border-slate-300">{sd?.subscription_type}</td>
-                                <td className="border border-slate-300">{sd?.subscription_status}</td>
-                                <td className="border border-slate-300">{sd?.purchase_date.toLocaleString()}</td>
-                                <td className="border border-slate-300">{sd?.expire_date.toLocaleString()}</td>
-                                <td className="border border-slate-300">{sd?.package_id}</td>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Subscription Id
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Subscription Type
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Subscription Status
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Purchase Date
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Expire Date
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Package Id
+                                </th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {subscriptionData.map((subscription, index) => (
+                                <tr key={index}>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{subscription.subscription_id}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{subscription.subscription_type}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{subscription.subscription_status}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{subscription.purchase_date}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{subscription.expire_date}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{subscription.package_id}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </main>
-    )
+        </main></>
+    );
 }
