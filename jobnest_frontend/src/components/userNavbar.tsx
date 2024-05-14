@@ -3,8 +3,34 @@ import axios from "axios";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { getAxiosConfig } from "./axiosConfig";
+
+interface profile {
+  id: number | "",
+  name: string | "",
+  email: string | "",
+  subscriptionStatus: string | ""
+}
+
 
 export function UserNavbar() {
+
+  const [data, setData] = useState<profile>()
+    const loadData = async () => {
+        try {
+            const res = await getAxiosConfig().get('users/profile')
+            console.log(res.data)
+            setData(res.data);
+        } catch (ex) {
+            console.log(ex)
+        }
+
+    }
+    useEffect(() => {
+        loadData();
+    }, [])
+    
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -64,7 +90,7 @@ export function UserNavbar() {
         >
           <Dropdown.Header>
             <span className="block text-sm">JobNest</span>
-            <span className="block truncate text-sm font-medium">name@gmail.com</span>
+            <span className="block truncate text-sm font-medium">{data?.email}</span>
           </Dropdown.Header>
           <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
           <Dropdown.Item onClick={handleEditProfile}>Edit profile</Dropdown.Item>
