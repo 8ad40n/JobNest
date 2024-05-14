@@ -1,4 +1,5 @@
 "use client"
+import { UserNavbar } from '@/components/userNavbar';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -23,6 +24,8 @@ export default function Ai() {
   };
 
   return (
+    <>
+    <UserNavbar/>
     <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
       <div>
         <h1>AI Chat</h1>
@@ -40,6 +43,6 @@ export default function Ai() {
           <button type="submit">Send</button>
         </form>
       </div>
-    </main>
+    </main></>
   );
 }

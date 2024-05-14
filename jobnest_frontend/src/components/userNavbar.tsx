@@ -9,22 +9,36 @@ export function UserNavbar() {
 
   const handleLogout = async () => {
     try {
-      // Retrieve token from local storage
       const token = localStorage.getItem("token");
 
-      // Make request to logout API endpoint with token included in headers
       await axios.post("http://localhost:8000/auth/logout", null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      // Redirect user to login page
       router.push("/login");
     } catch (error) {
       console.error("Error logging out:", error);
     }
   };
+
+  const handleProfile = async ()=>
+    {
+      router.push("/profile");
+    };
+    const handleTransaction = async ()=>
+      {
+        router.push("/profile/transaction");
+      };
+      const handleSubscription = async ()=>
+        {
+          router.push("/profile/subscription");
+        };
+        const handleEditProfile = async ()=>
+          {
+            router.push("/profile/edit");
+          };
 
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
@@ -41,20 +55,21 @@ export function UserNavbar() {
           arrowIcon={false}
           inline
           label={
-            <Avatar
+            <Avatar className="border-solid border-2 rounded-full"
               alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              img=""
               rounded
             />
           }
         >
           <Dropdown.Header>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">name@flowbite.com</span>
+            <span className="block text-sm">JobNest</span>
+            <span className="block truncate text-sm font-medium">name@gmail.com</span>
           </Dropdown.Header>
-          <Dropdown.Item>Profile</Dropdown.Item>
-          <Dropdown.Item>Settings</Dropdown.Item>
-          <Dropdown.Item>Earnings</Dropdown.Item>
+          <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
+          <Dropdown.Item onClick={handleEditProfile}>Edit profile</Dropdown.Item>
+          <Dropdown.Item onClick={handleTransaction}>Transaction</Dropdown.Item>
+          <Dropdown.Item onClick={handleSubscription}>Subscription</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
         </Dropdown>
@@ -84,6 +99,15 @@ export function UserNavbar() {
             <li>
               <span className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                 Post a Job
+              </span>
+            </li>
+          </span>
+        </Link>
+        <Link href="/ai">
+          <span className="cursor-pointer">
+            <li>
+              <span className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                AI
               </span>
             </li>
           </span>
