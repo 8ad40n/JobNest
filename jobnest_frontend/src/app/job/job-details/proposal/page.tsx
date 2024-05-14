@@ -1,4 +1,5 @@
 "use client"
+import { UserNavbar } from "@/components/userNavbar";
 import axios from "axios";
 import { useState } from "react";
 
@@ -46,8 +47,10 @@ export default function Proposal({
   };
 
   return (
+    <>
+    <UserNavbar/>
     <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
-      <div className="bg-white shadow-md rounded-lg p-8">
+      <div className="bg-white shadow-md rounded-lg p-12">
         <h1 className="text-3xl font-semibold mb-8">Proposal Form</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
@@ -84,12 +87,12 @@ export default function Proposal({
           ></textarea>
           <button
             type="submit"
-            className="bg-red-700 text-white px-6 py-3 rounded-lg hover:bg-black transition duration-300 ease-in-out"
+            className="bg-red-700 text-white px-6 py-3 rounded-xl hover:bg-black transition duration-300 ease-in-out"
           >
             Submit Proposal
           </button>
         </form>
       </div>
-    </main>
+    </main></>
   );
 }

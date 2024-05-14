@@ -16,7 +16,7 @@ export default function Login() {
       const resData: { jwt: string } = res.data;
       console.log(resData);
       localStorage.setItem("token", resData.jwt);
-      router.push("/profile");
+      router.push("/home");
     } catch (ex) {
       console.log(ex);
       setLoginStatus("Login Failed");
