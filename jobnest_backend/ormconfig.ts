@@ -16,11 +16,11 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 
 const config: PostgresConnectionOptions = {
   type: 'postgres',
-  database: 'JobNest',
+  database: 'JobNestt',
   host: 'localhost',
   port: 5432,
   username: 'postgres',
-  password: '1234',
+  password: '12345',
   entities: [User,Skill,UserSkill,Job,JobProposal,JobSkill, Payment, Chat, Bill, Package, Subscription, Blog,Feedback, HelpRequest],
   synchronize: true,
 };
