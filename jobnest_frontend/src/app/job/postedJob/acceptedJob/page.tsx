@@ -55,9 +55,16 @@ export default function AcceptedJob() {
               <Link href={`/job/postedJob/acceptedJob/chat?jobId=${job.jobID}&postedBy=${job.postedBy}&acceptedUserID=${job.acceptedUserID}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Go to Chat
               </Link>
-              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                Make a Payment
-              </button>
+              
+              <Link 
+              href={{
+                pathname: "/job/postedJob/acceptedJob/payment",
+                query: {
+                  JobID: job.jobID,
+                },
+              }} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+              Make a Payment
+              </Link>
             </div>
           </div>
         ))}

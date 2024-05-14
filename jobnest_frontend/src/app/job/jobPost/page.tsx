@@ -73,7 +73,8 @@ export default function AddJob() {
               Connect with talent that gets you, and hire them to take your
               business to the next level.
             </p>
-            <Link className="bg-red-700 text-white text-xl px-16 py-3 mt-6 rounded-full hover:bg-black hover:text-white" href="/job/postedJob">Want to see your posted jobs?</Link>
+            <Link className="bg-red-700 text-white text-xl px-16 py-3 mt-6 rounded-full hover:bg-black hover:text-white" href="/job/postedJob">Want to see your posted jobs?</Link><br /><br /><br />
+            <Link className="bg-blue-600 text-white text-xl px-9 py-3 mt-6 rounded-full hover:bg-black hover:text-white" href="/job/postedJob/acceptedJob">Want to see your posted job history?</Link>
           </div>
           <div className="flex justify-center ">
             <Image src={postJob} alt="create" className="jobImg text-center" />
