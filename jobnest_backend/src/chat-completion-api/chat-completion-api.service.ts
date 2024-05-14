@@ -8,8 +8,7 @@ import { ChatHistoryManager } from './dto/chat-history-manager';
 
 const DEFAULT_TEMPERATURE = 1;
 const DEFAULT_MODEL = 'gpt-3.5-turbo';
-// const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_API_KEY = "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";
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 
 
