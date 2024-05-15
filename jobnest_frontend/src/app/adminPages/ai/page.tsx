@@ -18,7 +18,7 @@ export default function AdminAi() {
         message: inputMessage,
       });
       setAiMessage(response.data.aiMessage);
-      setInputMessage(''); // Clear input field after submission
+      setInputMessage(''); 
     } catch (error) {
       console.error('Error fetching AI response:', error);
     }

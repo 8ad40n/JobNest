@@ -1,4 +1,5 @@
 "use client";
+import { UserNavbar } from '@/components/userNavbar';
 import axios from 'axios';
 import { useState } from 'react';
  
@@ -42,6 +43,9 @@ export default function FeedbackPage() {
   };
  
   return (
+    <>
+      <UserNavbar />
+      <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
     <div className="container">
       <h1>Feedback Form</h1>
       <form onSubmit={(e) => e.preventDefault()} className="feedback-form">
@@ -65,32 +69,13 @@ export default function FeedbackPage() {
             placeholder="Enter your feedback"
           />
         </div>
-        <div className="input-group">
-          <label>Your ID:</label>
-          <input
-            type="text"
-            value={givenById}
-            onChange={(e) => setGivenById(e.target.value)}
-            placeholder="Your user ID"
-          />
-        </div>
-        <div className="input-group">
-          <label>Receiver's ID:</label>
-          <input
-            type="text"
-            value={receivedById}
-            onChange={(e) => setReceivedById(e.target.value)}
-            placeholder="Receiver's user ID"
-          />
-        </div>
+        
         <button onClick={submitFeedback} disabled={loading} className="submit-button">
           Submit Feedback
         </button>
  
-        <h2>Get Average Rating</h2>
-        <button onClick={fetchAverageRating} disabled={!receivedById || loading} className="fetch-button">
-          Fetch Average Rating
-        </button>
+        
+        
         {averageRating && <p className="average-rating">{averageRating}</p>}
       </form>
       <style jsx>{`
@@ -133,7 +118,7 @@ export default function FeedbackPage() {
           font-weight: bold;
         }
       `}</style>
-    </div>
+    </div></main></>
   );
 }
  
