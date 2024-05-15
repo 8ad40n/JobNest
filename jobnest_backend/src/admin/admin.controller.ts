@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { JobPostDto } from 'src/job/dto/jobPost.dto';
 import { Roles } from 'src/role/role.decorator';
@@ -9,6 +9,18 @@ import { AdminService } from './admin.service';
 export class AdminController {
     constructor(private readonly adminService: AdminService){}
 
+    @UseGuards(JwtAuthGuard)
+    @Get("type")
+    async types(@Req() req) {
+        return await this.adminService.typeUser(req.user.id);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get("users")
+    async allUser(@Req() req) {
+        return await this.adminService.allUser(req.user.id);
+    }
+  
   
   @UseGuards(JwtAuthGuard)
   @Post("jobPost")
@@ -29,4 +41,6 @@ export class AdminController {
     async removeUser(@Param('id') userId: number , @Req() req) {
         return await this.adminService.removeUser(userId, req.user.id);
     }
+
+    
 }

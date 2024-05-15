@@ -14,7 +14,7 @@ interface profile {
 }
 
 
-export function UserNavbar() {
+export function AdminNavbar() {
 
   const [data, setData] = useState<profile>()
     const loadData = async () => {
@@ -51,25 +51,25 @@ export function UserNavbar() {
 
   const handleProfile = async ()=>
     {
-      router.push("/profile");
+      router.push("/adminPages/profile");
     };
     const handleTransaction = async ()=>
       {
-        router.push("/profile/transaction");
+        router.push("/adminPages/addUser");
       };
       const handleSubscription = async ()=>
         {
-          router.push("/profile/subscription");
+          router.push("/adminPages/user");
         };
         const handleEditProfile = async ()=>
           {
-            router.push("/profile/edit");
+            router.push("/adminPages/profile/edit");
           };
 
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
     <Navbar fluid rounded>
-      <Link href="/home">
+      <Link href="/adminPages">
         <span className="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer">
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Job<span className="text-red-700">Nest</span>
@@ -89,20 +89,20 @@ export function UserNavbar() {
           }
         >
           <Dropdown.Header>
-            <span className="block text-sm">{data?.name}</span>
+            <span className="block text-sm">Admin: {data?.name}</span>
             <span className="block truncate text-sm font-medium">{data?.email}</span>
           </Dropdown.Header>
           <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
           <Dropdown.Item onClick={handleEditProfile}>Edit profile</Dropdown.Item>
-          <Dropdown.Item onClick={handleTransaction}>Transaction</Dropdown.Item>
-          <Dropdown.Item onClick={handleSubscription}>Subscription</Dropdown.Item>
+          <Dropdown.Item onClick={handleTransaction}>Add User</Dropdown.Item>
+          <Dropdown.Item onClick={handleSubscription}>Users</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
         </Dropdown>
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Link href="/home">
+        <Link href="/adminPages">
           <span className="cursor-pointer">
             <li>
               <span className="block py-2 px-3 text-white bg-red-700 rounded md:bg-transparent md:text-red-700 md:p-0 md:dark:text-red-700" aria-current="page">
@@ -111,16 +111,16 @@ export function UserNavbar() {
             </li>
           </span>
         </Link>
-        <Link href="/job">
+        <Link href="/adminPages/job">
           <span className="cursor-pointer">
             <li>
               <span className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                Find Work
+                Jobs
               </span>
             </li>
           </span>
         </Link>
-        <Link href="/job/jobPost">
+        <Link href="/adminPages/job/post">
           <span className="cursor-pointer">
             <li>
               <span className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
@@ -129,7 +129,7 @@ export function UserNavbar() {
             </li>
           </span>
         </Link>
-        <Link href="/ai">
+        <Link href="/adminPages/ai">
           <span className="cursor-pointer">
             <li>
               <span className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
@@ -138,7 +138,7 @@ export function UserNavbar() {
             </li>
           </span>
         </Link>
-        <Link href="/blog">
+        <Link href="/adminPages/blog">
           <span className="cursor-pointer">
             <li>
               <span className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">

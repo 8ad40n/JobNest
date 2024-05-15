@@ -16,6 +16,7 @@ export class AdminService {
     @InjectRepository(UserSkill) private readonly userSkillRepository: Repository<UserSkill>){}
 
 
+
     async jobPost(data: any, userId: number){
         const user = await this.userRepository.findOne({where:{id:userId}});
 
@@ -53,8 +54,13 @@ export class AdminService {
         
     }
 
+    async typeUser(userID: number) {
+        return this.userRepository.find({ where: { id: userID }, select: ['type'] });
+    }
 
-
+    async allUser(userID: number) {
+        return this.userRepository.find();
+    }
 
 
     async removeJob(id: number, userId: number) {
