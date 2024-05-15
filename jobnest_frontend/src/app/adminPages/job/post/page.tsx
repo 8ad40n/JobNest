@@ -1,12 +1,12 @@
 "use client";
-import { UserNavbar } from "@/components/userNavbar";
+import { AdminNavbar } from "@/components/adminNavbar";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import postJob2 from "../../../assets/postJob2.png";
+import postJob2 from "../../../../assets/postJob.png";
 
-export default function AddJob() {
+export default function AdminAddJob() {
   const [alertMessage, setAlertMessage] = useState("");
   const [jobData, setJobData] = useState({
     title: "",
@@ -58,7 +58,7 @@ export default function AddJob() {
 
   return (
     <> 
-    <UserNavbar/>
+    <AdminNavbar/>
 
     <main className="flex min-h-screen flex-col justify-between p-24 container mx-auto px-1 lg:px-20 md:px-10">
       <div>

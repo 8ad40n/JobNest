@@ -16,7 +16,15 @@ export default function Login() {
       const resData: { jwt: string } = res.data;
       console.log(resData);
       localStorage.setItem("token", resData.jwt);
-      router.push("/home");
+       // Check user type
+      const userTypeRes = await getAxiosConfig().get("http://localhost:8000/admin/type");
+      const userType = userTypeRes.data[0].type; // Assuming the response is an array with a single object containing the user type
+      
+      if (userType === "admin") {
+        router.push("/adminPages");
+      } else {
+        router.push("/home");
+      }
     } catch (ex) {
       console.log(ex);
       setLoginStatus("Login Failed");

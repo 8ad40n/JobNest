@@ -1,9 +1,10 @@
 "use client";
+import { AdminNavbar } from "@/components/adminNavbar";
 import axios from "axios";
 import { Button, Card, Label, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-export default function Register() {
+export default function AddUser() {
   const router = useRouter();
   const [state, setState] = useState({
     name: "",
@@ -30,7 +31,7 @@ export default function Register() {
       .post("http://localhost:8000/auth/register", userData)
       .then((response) => {
         console.log(response.status, response.data);
-        router.push("/login");
+        router.push("/adminPages");
       })
       .catch((error) => {
         console.error("Error registering user:", error);
@@ -48,6 +49,7 @@ export default function Register() {
     //     </form>
     // </main>
 
+    <><AdminNavbar/>
     <main className="flex min-h-screen flex-col justify-center items-center p-24 container mx-auto px-1 lg:px-20 md:px-10">
       <Card className="max-w-sm w-1/2">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -96,6 +98,6 @@ export default function Register() {
           <Button type="submit">Submit</Button>
         </form>
       </Card>
-    </main>
+    </main></>
   );
 }
