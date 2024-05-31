@@ -7,6 +7,7 @@ export class ChatCompletionApiController {
   constructor(private readonly service: ChatCompletionApiService) {}
 
   // @UseGuards(JwtAuthGuard)
+
   @Post()
   getChatCompletionMessage(
     @Body(new ValidationPipe({ transform: true }))
@@ -14,4 +15,5 @@ export class ChatCompletionApiController {
   ) {
     return this.service.getAiModelAnswer(data);
   }
+
 }

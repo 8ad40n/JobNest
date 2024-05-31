@@ -47,7 +47,11 @@ export class JobService {
       }
 
     async jobs(): Promise<Job[]> {
-        return this.jobRepository.find();
+        return this.jobRepository.find({
+            order: {
+              date: 'DESC' 
+            }
+          });
     }
     
     async jobPost(data: any): Promise<Job> {

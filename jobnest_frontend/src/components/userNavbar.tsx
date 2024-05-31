@@ -65,6 +65,10 @@ export function UserNavbar() {
           {
             router.push("/profile/edit");
           };
+          const handleAssessment = async ()=>
+            {
+              router.push("/assessment");
+            };
 
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
@@ -96,6 +100,7 @@ export function UserNavbar() {
           <Dropdown.Item onClick={handleEditProfile}>Edit profile</Dropdown.Item>
           <Dropdown.Item onClick={handleTransaction}>Transaction</Dropdown.Item>
           <Dropdown.Item onClick={handleSubscription}>Subscription</Dropdown.Item>
+          <Dropdown.Item onClick={handleAssessment}>Assessment</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
         </Dropdown>
