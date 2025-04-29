@@ -2,6 +2,7 @@
 # JobNest
 
 JobNest is a web application developed to connect task sellers with freelance buyers, fostering a dynamic marketplace for earning and outsourcing opportunities. The platform allows sellers to post tasks and buyers to apply for them, promoting task diversity and fairness while empowering individuals to generate income. 
+---
 
 Key features include:
 - User authentication (JWT based)
@@ -11,8 +12,10 @@ Key features include:
 - Communication tools like chat features
 - Postman API collections/ Swagger documentation
 - Stripe payment
+---
 
 Users can manage their profiles, view transaction histories and transaction updates. Admins have control over user activities and job approvals. Additional functionalities include feedback and rating, skill assessments, blog, and comprehensive help and support services. The platform emphasizes trust, transparency, and efficiency in the task selection and payment processes, creating a secure environment for freelance work.
+---
 
 ### Technologies and Tools:
 - Nest.js
@@ -28,6 +31,7 @@ Users can manage their profiles, view transaction histories and transaction upda
 - VS Code
 - TypeScript
 - Tailwind CSS
+---
 
 ## Screenshots
 
